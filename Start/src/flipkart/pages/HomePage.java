@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HomePage {
 	
@@ -26,7 +28,12 @@ public void close_popup(){
 public void select_category(WebDriver driver) throws InterruptedException{
 	Thread.sleep(3000);
 	Actions ac =new Actions(driver);
-	ac.moveToElement(electronics);
+	WebDriverWait wait  = new WebDriverWait(driver,20);
+	wait.until(ExpectedConditions.visibilityOf(electronics));
+	//electronics.isDisplayed();
+
+	ac.moveToElement(electronics).build().perform();
+	samsung.isDisplayed();
 	samsung.click();
 }
 }

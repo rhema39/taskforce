@@ -19,7 +19,7 @@ public class TC_001 extends BaseTestClass {
 			homepage.close_popup();
 			homepage.select_category(driver);
 			ProductListingPage productListingPage = PageFactory.initElements(driver, ProductListingPage.class);
-			productListingPage.select_item();
+			productListingPage.select_item(driver);
 			ProductPage productPage  = PageFactory.initElements(driver, ProductPage.class);
 			productPage.buyNow(driver);
 			CheckoutPage checkoutPage = PageFactory.initElements(driver, CheckoutPage.class);

@@ -16,11 +16,16 @@ public class CheckoutPage {
 	@FindBy(xpath="//*[@id='container']/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/form/div[3]/button/span")
 	WebElement login_btn2;
 	
-	public void enterDetails(){
+	public void enterDetails() throws InterruptedException{
+		Thread.sleep(2000);
+		enter_number.click();
 		enter_number.sendKeys("9953718297");
+		Thread.sleep(2000);
 		
 		login_btn.click();
+		Thread.sleep(2000);
 		password.sendKeys("bangari@34");
+		Thread.sleep(2000);
 		login_btn2.click();
 	}
 
