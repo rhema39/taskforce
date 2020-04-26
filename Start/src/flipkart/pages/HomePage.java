@@ -1,7 +1,9 @@
 package flipkart.pages;
 
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -18,14 +20,14 @@ WebElement close_btn;
 @FindBy(xpath="//*[@id='container']/div/div[2]/div/ul/li[1]/span[text()= 'Electronics']")
 WebElement electronics;
 
-@FindBy(xpath="(//li/a[text()='Samsung'])[1]")
-WebElement samsung;
+String Sub_Category = "(//li/a[text()='$1$'])[1]";
+
 
 public void close_popup(){
 	close_btn.click();
 	System.out.println("popu up closed");
 }
-public void select_category(WebDriver driver) throws InterruptedException{
+public void select_category(WebDriver driver, HashMap<String, String> testData) throws InterruptedException{
 	Thread.sleep(3000);
 	Actions ac =new Actions(driver);
 	WebDriverWait wait  = new WebDriverWait(driver,20);
@@ -33,7 +35,7 @@ public void select_category(WebDriver driver) throws InterruptedException{
 	//electronics.isDisplayed();
 
 	ac.moveToElement(electronics).build().perform();
-	samsung.isDisplayed();
-	samsung.click();
+	Sub_Category.replace("$1$",testData.get("Sub_Category"));
+	driver.findElement(By.xpath(Sub_Category)).click();
 }
 }
