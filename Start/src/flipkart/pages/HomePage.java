@@ -12,30 +12,36 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import common_utility.Common;
+
 public class HomePage {
 	
 @FindBy(xpath="/html/body/div[2]/div/div/button")
 WebElement close_btn;
 
-@FindBy(xpath="//*[@id='container']/div/div[2]/div/ul/li[1]/span[text()= 'Electronics']")
-WebElement electronics;
+String maincategory= "//span[text()='$1$']";
+
 
 String Sub_Category = "(//li/a[text()='$1$'])[1]";
 
 
-public void close_popup(){
-	close_btn.click();
+public void close_popup(WebDriver driver){
+	Common.customClick(close_btn, driver);
 	System.out.println("popu up closed");
 }
-public void select_category(WebDriver driver, HashMap<String, String> testData) throws InterruptedException{
+public void select_category(WebDriver driver, HashMap<String,String> testData) throws InterruptedException{
 	Thread.sleep(3000);
 	Actions ac =new Actions(driver);
-	WebDriverWait wait  = new WebDriverWait(driver,20);
-	wait.until(ExpectedConditions.visibilityOf(electronics));
+	maincategory= maincategory.replace("$1$", testData.get("Category"));
+	 WebElement web=driver.findElement(By.xpath(maincategory));
+	/*WebDriverWait wait  = new WebDriverWait(driver,20);
+	wait.until(ExpectedConditions.visibilityOf(web));*/
 	//electronics.isDisplayed();
+	 Common.customClick(web, driver);
 
-	ac.moveToElement(electronics).build().perform();
-	Sub_Category.replace("$1$",testData.get("Sub_Category"));
+	ac.moveToElement(web).build().perform();
+	Sub_Category= Sub_Category.replace("$1$",testData.get("Sub_Category"));
+	System.out.print(Sub_Category);
 	driver.findElement(By.xpath(Sub_Category)).click();
 }
 }

@@ -13,22 +13,22 @@ import flipkart.pages.ProductListingPage;
 import flipkart.pages.ProductPage;
 
 public class TC_001 extends BaseTestClass {
-
-	@Test()
+@Test
+	//@Test(dataProvider="searchCategory" ,dataProviderClass=Read_Test_Data.class)
 	public void simpleTest() throws InterruptedException, IOException
 	{
 	HomePage homepage = 
 	PageFactory.initElements(driver, HomePage.class);
 
-	        HashMap<String , String> testData = Read_Test_Data.getTestData("TC_001");
-			homepage.close_popup();
+	       HashMap<String , String> testData = Read_Test_Data.getTestData("TC_001");
+			homepage.close_popup(driver);
 			homepage.select_category(driver,testData);
 			ProductListingPage productListingPage = PageFactory.initElements(driver, ProductListingPage.class);
 			productListingPage.select_item(driver);
 			ProductPage productPage  = PageFactory.initElements(driver, ProductPage.class);
 			productPage.buyNow(driver);
 			CheckoutPage checkoutPage = PageFactory.initElements(driver, CheckoutPage.class);
-			checkoutPage.enterDetails();
+			checkoutPage.enterDetails(driver);
 	}
 	
 	

@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import common_utility.Common;
+
 public class ProductPage {
 	@FindBy(xpath="//*[@id='container']/div/div[3]/div[2]/div[1]/div[1]/div[2]/div/ul/li[2]/form/button")
 	WebElement buy_now_btn;
@@ -18,6 +20,6 @@ public class ProductPage {
 
            driver.switchTo().window(h);}
 		
-		buy_now_btn.click();
+        Common.customClick(buy_now_btn, driver);
 	}
 }
