@@ -3,7 +3,7 @@ package testNextGen;
 import org.testng.annotations.Test;
 
 public class SecondTest {
-	@Test(priority =1 ,groups="Ichku",dependsOnMethods=("SecSecondTestMethod"))
+	@Test(priority =1 ,groups="Ichku", dependsOnMethods=("SecSecondTestMethod"))
 	public static void FirFirstTestMethod(){
 		System.out.println("FirFirstTestMethod");
 	}
