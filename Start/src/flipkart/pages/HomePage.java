@@ -29,10 +29,10 @@ public void close_popup(WebDriver driver){
 	Common.customClick(close_btn, driver);
 	System.out.println("popu up closed");
 }
-public void select_category(WebDriver driver, HashMap<String,String> testData) throws InterruptedException{
+public void select_category(WebDriver driver, HashMap<Object,Object> testData) throws InterruptedException{
 	Thread.sleep(3000);
 	Actions ac =new Actions(driver);
-	maincategory= maincategory.replace("$1$", testData.get("Category"));
+	maincategory= maincategory.replace("$1$", (CharSequence) testData.get("Category"));
 	 WebElement web=driver.findElement(By.xpath(maincategory));
 	/*WebDriverWait wait  = new WebDriverWait(driver,20);
 	wait.until(ExpectedConditions.visibilityOf(web));*/
@@ -40,7 +40,7 @@ public void select_category(WebDriver driver, HashMap<String,String> testData) t
 	 Common.customClick(web, driver);
 
 	ac.moveToElement(web).build().perform();
-	Sub_Category= Sub_Category.replace("$1$",testData.get("Sub_Category"));
+	Sub_Category= Sub_Category.replace("$1$",(CharSequence) testData.get("Sub_Category"));
 	System.out.print(Sub_Category);
 	driver.findElement(By.xpath(Sub_Category)).click();
 }
